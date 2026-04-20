@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import Grainient from "./Grainient";
 
 function Bubble({ side, text }) {
   const isRight = side === "right";
@@ -18,8 +19,33 @@ function Bubble({ side, text }) {
 const slides = [
   {
     id: "cover", render: () => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100%", textAlign: "center", position: "relative" }}>
-        <div style={{ position: "absolute", top: -50, left: -50, right: -50, bottom: -50, backgroundImage: 'url("/banner.jpg")', backgroundSize: "cover", backgroundPosition: "center", filter: "blur(30px)", opacity: 0.4, zIndex: 0, pointerEvents: "none" }} />
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100%", width: "100%", textAlign: "center", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 0, pointerEvents: "none", opacity: 0.8 }}>
+          <Grainient
+            color1="#E20074"
+            color2="#000000"
+            color3="#000000"
+            timeSpeed={0.25}
+            colorBalance={0}
+            warpStrength={1}
+            warpFrequency={5.2}
+            warpSpeed={2}
+            warpAmplitude={33}
+            blendAngle={3}
+            blendSoftness={0.41}
+            rotationAmount={0}
+            noiseScale={1.1}
+            grainAmount={0.08}
+            grainScale={2}
+            grainAnimated={false}
+            contrast={1.5}
+            gamma={1}
+            saturation={1}
+            centerX={0}
+            centerY={0}
+            zoom={0.9}
+          />
+        </div>
         <div style={{ position: "absolute", top: 40, left: 40, fontSize: 13, letterSpacing: 3, color: "var(--muted)", fontFamily: "var(--mono)", textTransform: "uppercase", zIndex: 1 }}>Case Study</div>
         <img src="/logo.png" alt="AR" style={{ width: 48, height: 48, objectFit: "contain", marginBottom: 20, opacity: 0.7, position: "relative", zIndex: 1 }} />
         <div style={{ width: 64, height: 3, background: "var(--accent)", margin: "0 auto 24px", position: "relative", zIndex: 1 }} />
@@ -284,7 +310,7 @@ export default function CaseStudyDeck() {
       onClick={(e) => { const rect = containerRef.current.getBoundingClientRect(); if (e.clientX - rect.left > rect.width / 2) setCurrent((p) => Math.min(p + 1, slides.length - 1)); else setCurrent((p) => Math.max(p - 1, 0)); }}
       style={{ "--accent": "#E20074", "--fg": "#f0f0f0", "--muted": "#8a8a8a", "--card": "rgba(255,255,255,0.03)", "--border": "rgba(255,255,255,0.08)", "--display": "'DM Sans',sans-serif", "--body": "'DM Sans',sans-serif", "--mono": "'JetBrains Mono',monospace", width: "100%", height: "100vh", background: "#0a0a0a", overflow: "hidden", cursor: "pointer", position: "relative", userSelect: "none" }}>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
-      <div style={{ width: "100%", height: "100%", maxWidth: 1100, margin: "0 auto", padding: "40px 40px" }}>{slides[current].render()}</div>
+      <div style={{ width: "100%", height: "100%", maxWidth: slides[current].id === "cover" ? "none" : 1100, margin: "0 auto", padding: slides[current].id === "cover" ? 0 : "40px 40px" }}>{slides[current].render()}</div>
       <div style={{ position: "absolute", bottom: 20, left: 0, right: 0, display: "flex", justifyContent: "center", alignItems: "center", gap: 6 }}>
         {slides.map((_, i) => (<div key={i} onClick={(e) => { e.stopPropagation(); setCurrent(i); }} style={{ width: i === current ? 24 : 8, height: 8, borderRadius: 4, background: i === current ? "var(--accent)" : "rgba(255,255,255,0.15)", transition: "all 0.3s ease", cursor: "pointer" }} />))}
       </div>
