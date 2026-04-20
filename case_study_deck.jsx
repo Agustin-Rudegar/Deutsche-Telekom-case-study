@@ -201,10 +201,10 @@ const slides = [
   {
     id: "second", render: ({ isMobile }) => (
       <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "100%" }}>
-        <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>06 — Additional Project</div>
-        <h2 style={{ fontSize: isMobile ? 24 : 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 32px", lineHeight: 1.2 }}>AI Product Search <span style={{ fontWeight: 600 }}>for Retail</span></h2>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 16 : 24, alignItems: "center" }}>
           <div>
+            <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>06 — Additional Project</div>
+            <h2 style={{ fontSize: isMobile ? 24 : 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 32px", lineHeight: 1.2 }}>AI Product Search <span style={{ fontWeight: 600 }}>for Retail</span></h2>
             <p style={{ fontSize: 15, color: "var(--fg)", fontFamily: "var(--body)", lineHeight: 1.7, marginBottom: 20 }}>Deployed an AI-powered product discovery assistant for a hardware retailer in Venezuela. Customers could search thousands of products using natural language via WhatsApp.</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               {[
