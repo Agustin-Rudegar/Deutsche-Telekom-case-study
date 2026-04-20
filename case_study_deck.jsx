@@ -49,15 +49,18 @@ const slides = [
         <div style={{ position: "absolute", top: 40, left: 40, fontSize: 13, letterSpacing: 3, color: "var(--muted)", fontFamily: "var(--mono)", textTransform: "uppercase", zIndex: 1 }}>Case Study</div>
         <img src="/logo.png" alt="AR" style={{ width: 48, height: 48, objectFit: "contain", marginBottom: 12, opacity: 0.7, position: "relative", zIndex: 1 }} />
         <div style={{ fontSize: 13, color: "var(--muted)", fontFamily: "var(--mono)", marginBottom: 24, position: "relative", zIndex: 1 }}>
-          <span>Agustín Rüdegar</span><span style={{ color: "var(--border)", margin: "0 12px" }}>·</span><span>AI Product Designer</span>
+          Agustín Rüdegar
         </div>
         <div style={{ width: 64, height: 3, background: "var(--accent)", margin: "0 auto 24px", position: "relative", zIndex: 1 }} />
         <h1 style={{ fontSize: isMobile ? 36 : 52, fontWeight: 300, lineHeight: 1.15, fontFamily: "var(--display)", color: "var(--fg)", margin: 0, letterSpacing: -1, position: "relative", zIndex: 1 }}>
           Designing an AI Concierge<br /><span style={{ fontWeight: 600 }}>for Healthcare</span>
         </h1>
-        <p style={{ fontSize: isMobile ? 15 : 18, color: "var(--muted)", marginTop: 20, fontFamily: "var(--body)", position: "relative", zIndex: 1 }}>
+        <p style={{ fontSize: isMobile ? 15 : 18, color: "var(--muted)", marginTop: 20, fontFamily: "var(--body)", position: "relative", zIndex: 1, marginBottom: 24 }}>
           How conversational AI transformed appointment scheduling<br />for a dental clinic in Buenos Aires
         </p>
+        <div style={{ fontSize: 13, color: "var(--muted)", fontFamily: "var(--mono)", position: "relative", zIndex: 1 }}>
+          AI Product Designer
+        </div>
       </div>
     )
   },
