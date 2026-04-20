@@ -59,7 +59,7 @@ const slides = [
           How conversational AI transformed appointment scheduling<br />for a dental clinic in Buenos Aires
         </p>
         <div style={{ position: "absolute", bottom: isMobile ? 80 : 60, fontSize: 12, color: "var(--muted)", fontFamily: "var(--mono)", zIndex: 1, textTransform: "uppercase", letterSpacing: 2 }}>
-          Digital Designer <span style={{ color: "var(--accent)" }}>(AI Experience)</span>
+          Digital Designer <span style={{ color: "var(--accent)" }}>AI Experience</span>
         </div>
       </div>
     )
