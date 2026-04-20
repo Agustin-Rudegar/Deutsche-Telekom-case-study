@@ -66,6 +66,7 @@ const Grainient = ({
       uniform vec2 uCenter;
       uniform float uZoom;
 
+      // --- Utilities ---
       vec3 rgb2hsv(vec3 c) {
         vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
         vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
@@ -85,49 +86,77 @@ const Grainient = ({
         return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
       }
 
-      float noise(vec2 p) {
-        vec2 i = floor(p);
-        vec2 f = fract(p);
-        float a = random(i);
-        float b = random(i + vec2(1.0, 0.0));
-        float c = random(i + vec2(0.0, 1.0));
-        float d = random(i + vec2(1.0, 1.0));
-        vec2 u = f * f * (3.0 - 2.0 * f);
-        return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
+      // Simplex 2D noise (optimized)
+      vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+      float snoise(vec2 v){
+        const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+                 -0.577350269189626, 0.024390243902439);
+        vec2 i  = floor(v + dot(v, C.yy) );
+        vec2 x0 = v -   i + dot(i, C.xx);
+        vec2 i1;
+        i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+        vec4 x12 = x0.xyxy + C.xxzz;
+        x12.xy -= i1;
+        i = mod(i, 289.0);
+        vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+        + i.x + vec3(0.0, i1.x, 1.0 ));
+        vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
+          dot(x12.zw,x12.zw)), 0.0);
+        m = m*m ;
+        m = m*m ;
+        vec3 x = 2.0 * fract(p * C.www) - 1.0;
+        vec3 h = abs(x) - 0.5;
+        vec3 ox = floor(x + 0.5);
+        vec3 a0 = x - ox;
+        m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+        vec3 g;
+        g.x  = a0.x  * x0.x  + h.x  * x0.y;
+        g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+        return 130.0 * dot(m, g);
+      }
+
+      float fbm(vec2 p) {
+        float v = 0.0;
+        float a = 0.5;
+        vec2 shift = vec2(100.0);
+        for (int i = 0; i < 4; ++i) {
+          v += a * snoise(p);
+          p = p * 2.0 + shift;
+          a *= 0.5;
+        }
+        return v;
       }
 
       void main() {
-        // Apply zoom and center
         vec2 uv = (vUv - uCenter) / uZoom + uCenter;
-        
-        // Time constant
         float t = uTime * uWarpSpeed;
         
-        // Organic warping
-        vec2 p = uv * uWarpFrequency;
-        float n1 = noise(p + t * 0.5);
-        float n2 = noise(p.yx - t * 0.3);
-        
-        // Very subtle displacement based on warp parameters
-        float warpScale = uWarpStrength * 0.02;
-        uv.x += sin(n1 * uWarpAmplitude) * warpScale;
-        uv.y += cos(n2 * uWarpAmplitude) * warpScale;
+        // --- Domain Warping (Liquid Effect) ---
+        vec2 q = vec2(0.0);
+        q.x = fbm(uv * uWarpFrequency + vec2(0.0, 0.0) + t * 0.1);
+        q.y = fbm(uv * uWarpFrequency + vec2(5.2, 1.3) + t * 0.15);
 
-        // Blob-based color blending (much more subtle and organic than linear)
-        float mix1 = noise(uv * 1.5 + t * 0.2);
-        float mix2 = noise(uv * 2.0 - t * 0.15);
+        vec2 r = vec2(0.0);
+        r.x = fbm(uv * uWarpFrequency + 4.0 * q + vec2(1.7, 9.2) + t * 0.05);
+        r.y = fbm(uv * uWarpFrequency + 4.0 * q + vec2(8.3, 2.8) + t * 0.08);
+
+        float f = fbm(uv * uWarpFrequency + 4.0 * r);
         
-        // Base gradient influenced by the blend angle
+        // --- Color Mixing ---
         float angle = uBlendAngle * 3.14159 / 180.0;
         vec2 dir = vec2(cos(angle), sin(angle));
         float dist = dot(uv - 0.5, dir) + 0.5;
-        float baseMix = smoothstep(0.5 - uBlendSoftness - uColorBalance, 0.5 + uBlendSoftness - uColorBalance, dist);
         
-        vec3 color = mix(uColor1, uColor2, baseMix);
-        // Blend in the third color using the noise blobs
-        color = mix(color, uColor3, mix1 * 0.6 + mix2 * 0.4);
+        // Base mix influenced by warp and balance
+        float mixBase = smoothstep(0.5 - uBlendSoftness - uColorBalance, 0.5 + uBlendSoftness - uColorBalance, dist + f * uWarpStrength * 0.5);
+        
+        vec3 color = mix(uColor1, uColor2, mixBase);
+        
+        // Secondary warp mix for the third color
+        float mixSecond = smoothstep(0.2, 0.8, f + q.x * uWarpStrength);
+        color = mix(color, uColor3, mixSecond * 0.7);
 
-        // Adjust Contrast, Gamma, Saturation
+        // --- Post Processing ---
         color = pow(max(color, 0.0), vec3(1.0 / uGamma));
         color = mix(vec3(0.5), color, uContrast);
         
@@ -135,7 +164,7 @@ const Grainient = ({
         hsv.y *= uSaturation;
         color = hsv2rgb(hsv);
 
-        // Subtle Grain
+        // --- Film Grain ---
         float grainTime = uGrainAnimated ? uTime * 10.0 : 0.0;
         float grain = random(vUv * uGrainScale + grainTime);
         color += (grain - 0.5) * uGrainAmount;
