@@ -22,11 +22,11 @@ const slides = [
       <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100%", width: "100%", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 0, pointerEvents: "none", opacity: 1 }}>
           <Grainient
-            color1="#E20074"
-            color2="#080005"
-            color3="#000000"
+            color1="#000000"
+            color2="#E20074"
+            color3="#080005"
             timeSpeed={0.05}
-            colorBalance={0.0}
+            colorBalance={-0.2}
             warpStrength={0.25}
             warpFrequency={0.12}
             warpSpeed={0.1}
