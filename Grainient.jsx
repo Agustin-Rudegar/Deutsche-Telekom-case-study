@@ -33,16 +33,16 @@ const Grainient = ({
     const gl = canvas.getContext("webgl");
     if (!gl) return;
 
-    const vertSource = \`
+    const vertSource = `
       attribute vec2 position;
       varying vec2 vUv;
       void main() {
         vUv = position * 0.5 + 0.5;
         gl_Position = vec4(position, 0.0, 1.0);
       }
-    \`;
+    `;
 
-    const fragSource = \`
+    const fragSource = `
       precision highp float;
       varying vec2 vUv;
       uniform float uTime;
@@ -126,7 +126,7 @@ const Grainient = ({
 
         gl_FragColor = vec4(color, 1.0);
       }
-    \`;
+    `;
 
     const createShader = (type, source) => {
       const shader = gl.createShader(type);
