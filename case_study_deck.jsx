@@ -47,7 +47,10 @@ const slides = [
           />
         </div>
         <div style={{ position: "absolute", top: 40, left: 40, fontSize: 13, letterSpacing: 3, color: "var(--muted)", fontFamily: "var(--mono)", textTransform: "uppercase", zIndex: 1 }}>Case Study</div>
-        <img src="/logo.png" alt="AR" style={{ width: 48, height: 48, objectFit: "contain", marginBottom: 20, opacity: 0.7, position: "relative", zIndex: 1 }} />
+        <img src="/logo.png" alt="AR" style={{ width: 48, height: 48, objectFit: "contain", marginBottom: 12, opacity: 0.7, position: "relative", zIndex: 1 }} />
+        <div style={{ fontSize: 13, color: "var(--muted)", fontFamily: "var(--mono)", marginBottom: 24, position: "relative", zIndex: 1 }}>
+          <span>Agustín Rüdegar</span><span style={{ color: "var(--border)", margin: "0 12px" }}>·</span><span>AI Product Designer</span>
+        </div>
         <div style={{ width: 64, height: 3, background: "var(--accent)", margin: "0 auto 24px", position: "relative", zIndex: 1 }} />
         <h1 style={{ fontSize: 52, fontWeight: 300, lineHeight: 1.15, fontFamily: "var(--display)", color: "var(--fg)", margin: 0, letterSpacing: -1, position: "relative", zIndex: 1 }}>
           Designing an AI Concierge<br /><span style={{ fontWeight: 600 }}>for Healthcare</span>
@@ -55,9 +58,6 @@ const slides = [
         <p style={{ fontSize: 18, color: "var(--muted)", marginTop: 20, fontFamily: "var(--body)", position: "relative", zIndex: 1 }}>
           How conversational AI transformed appointment scheduling<br />for a dental clinic in Buenos Aires
         </p>
-        <div style={{ position: "absolute", bottom: 40, display: "flex", gap: 32, fontSize: 13, color: "var(--muted)", fontFamily: "var(--mono)", zIndex: 1 }}>
-          <span>Agustín Rüdegar</span><span style={{ color: "var(--border)" }}>·</span><span>AI Product Designer</span>
-        </div>
       </div>
     )
   },
@@ -315,7 +315,7 @@ export default function CaseStudyDeck() {
         {slides.map((_, i) => (<div key={i} onClick={(e) => { e.stopPropagation(); setCurrent(i); }} style={{ width: i === current ? 24 : 8, height: 8, borderRadius: 4, background: i === current ? "var(--accent)" : "rgba(255,255,255,0.15)", transition: "all 0.3s ease", cursor: "pointer" }} />))}
       </div>
       <div style={{ position: "absolute", bottom: 20, right: 30, fontSize: 12, fontFamily: "var(--mono)", color: "var(--muted)" }}>{current + 1} / {slides.length}</div>
-      <div style={{ position: "absolute", bottom: 20, left: 30, fontSize: 11, fontFamily: "var(--mono)", color: "rgba(255,255,255,0.2)" }}>← → or click to navigate</div>
+      <div style={{ position: "absolute", bottom: 20, left: 30, fontSize: 11, fontFamily: "var(--mono)", color: "#000" }}>← → or click to navigate</div>
     </div>
   );
 }
