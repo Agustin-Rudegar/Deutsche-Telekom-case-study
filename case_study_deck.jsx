@@ -19,7 +19,7 @@ const slides = [
   {
     id: "cover", render: () => (
       <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100%", textAlign: "center", position: "relative" }}>
-        <div style={{ position: "absolute", top: -50, left: -50, right: -50, bottom: -50, backgroundImage: 'url("/banner.jpg")', backgroundSize: "cover", backgroundPosition: "center", filter: "blur(60px)", opacity: 0.15, zIndex: 0, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: -50, left: -50, right: -50, bottom: -50, backgroundImage: 'url("/banner.jpg")', backgroundSize: "cover", backgroundPosition: "center", filter: "blur(30px)", opacity: 0.4, zIndex: 0, pointerEvents: "none" }} />
         <div style={{ position: "absolute", top: 40, left: 40, fontSize: 13, letterSpacing: 3, color: "var(--muted)", fontFamily: "var(--mono)", textTransform: "uppercase", zIndex: 1 }}>Case Study</div>
         <img src="/logo.png" alt="AR" style={{ width: 48, height: 48, objectFit: "contain", marginBottom: 20, opacity: 0.7, position: "relative", zIndex: 1 }} />
         <div style={{ width: 64, height: 3, background: "var(--accent)", margin: "0 auto 24px", position: "relative", zIndex: 1 }} />
