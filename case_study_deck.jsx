@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import Grainient from "./Grainient";
 
-function Bubble({ side, text }) {
+function Bubble({ side, text, index = 0 }) {
   const isRight = side === "right";
   return (
-    <div style={{ display: "flex", justifyContent: isRight ? "flex-end" : "flex-start" }}>
+    <div style={{ display: "flex", justifyContent: isRight ? "flex-end" : "flex-start", opacity: 0, animation: `fadeInSlide 0.4s ease ${index * 0.15 + 0.1}s forwards` }}>
       <div style={{
         maxWidth: "82%",
         background: isRight ? "var(--accent)" : "rgba(255,255,255,0.06)",
@@ -144,25 +144,25 @@ const slides = [
           <div style={{ background: "var(--card)", borderRadius: 12, padding: 24, border: "1px solid var(--border)" }}>
             <div style={{ fontSize: 11, fontFamily: "var(--mono)", color: "var(--accent)", letterSpacing: 2, marginBottom: 16, textTransform: "uppercase" }}>Booking Flow</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <Bubble side="right" text="Hi, I need an implant" />
-              <Bubble side="left" text="Hello! Could you give me your name? I'd also like to know if you have any previous studies, like a panoramic X-ray." />
-              <Bubble side="right" text="I don't have any studies yet" />
-              <Bubble side="left" text="I'd recommend getting a panoramic X-ray before the appointment. Meanwhile, I can schedule you with the implant specialist. Shall I proceed?" />
-              <Bubble side="right" text="Yes, please book it" />
-              <Bubble side="left" text="Done! Monday at 3:00 PM with the implant specialist. Cost: $500. I'll send a reminder 24h before. See you there!" />
-              <Bubble side="right" text="Perfect, thank you!" />
+              <Bubble side="right" text="Hi, I need an implant" index={0} />
+              <Bubble side="left" text="Hello! Could you give me your name? I'd also like to know if you have any previous studies, like a panoramic X-ray." index={1} />
+              <Bubble side="right" text="I don't have any studies yet" index={2} />
+              <Bubble side="left" text="I'd recommend getting a panoramic X-ray before the appointment. Meanwhile, I can schedule you with the implant specialist. Shall I proceed?" index={3} />
+              <Bubble side="right" text="Yes, please book it" index={4} />
+              <Bubble side="left" text="Done! Monday at 3:00 PM with the implant specialist. Cost: $500. I'll send a reminder 24h before. See you there!" index={5} />
+              <Bubble side="right" text="Perfect, thank you!" index={6} />
             </div>
           </div>
           <div style={{ background: "var(--card)", borderRadius: 12, padding: 24, border: "1px solid var(--border)" }}>
             <div style={{ fontSize: 11, fontFamily: "var(--mono)", color: "var(--accent)", letterSpacing: 2, marginBottom: 16, textTransform: "uppercase" }}>Rescheduling Flow</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <Bubble side="left" text="Confirmed: General Dentistry with Dr. Acosta, Saturday June 10 at 10:00 AM." />
-              <Bubble side="right" text="Can you change it to 12 PM?" />
-              <Bubble side="left" text="No problem! Let me check Dr. Acosta's availability..." />
-              <Bubble side="left" text="Done! Rescheduled to Saturday June 10 at 12:00 PM. Your previous 10 AM slot has been cancelled." />
-              <Bubble side="right" text="Great, did you cancel the old one?" />
-              <Bubble side="left" text="Yes! You now only have the 12:00 PM slot. Any other questions?" />
-              <Bubble side="right" text="No, that's all. Thanks!" />
+              <Bubble side="left" text="Confirmed: General Dentistry with Dr. Acosta, Saturday June 10 at 10:00 AM." index={0} />
+              <Bubble side="right" text="Can you change it to 12 PM?" index={1} />
+              <Bubble side="left" text="No problem! Let me check Dr. Acosta's availability..." index={2} />
+              <Bubble side="left" text="Done! Rescheduled to Saturday June 10 at 12:00 PM. Your previous 10 AM slot has been cancelled." index={3} />
+              <Bubble side="right" text="Great, did you cancel the old one?" index={4} />
+              <Bubble side="left" text="Yes! You now only have the 12:00 PM slot. Any other questions?" index={5} />
+              <Bubble side="right" text="No, that's all. Thanks!" index={6} />
             </div>
           </div>
         </div>
@@ -177,13 +177,13 @@ const slides = [
         <h2 style={{ fontSize: isMobile ? 24 : 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 32px", lineHeight: 1.2 }}>Architecture built for <span style={{ fontWeight: 600 }}>reliability</span></h2>
         <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? 12 : 16, marginBottom: 28 }}>
           {[
-            { label: "Message Ingestion", items: ["WhatsApp via Evolution API", "Redis message buffering", "Session state management"], color: "var(--accent)" },
-            { label: "AI Engine", items: ["GPT-4o for language understanding", "Rule-based prompt orchestration", "Specialist-to-calendar routing"], color: "var(--accent)" },
-            { label: "Calendar Actions", items: ["Google Calendar API (5 calendars)", "Real-time availability check", "Create, update, and cancel events"], color: "var(--accent)" },
-            { label: "Response & Storage", items: ["Natural language response", "Booking confirmation + calendar link", "Patient records via Baserow"], color: "var(--accent)" },
+            { label: "Message Ingestion", role: "Input", items: ["WhatsApp via Evolution API", "Redis message buffering", "Session state management"] },
+            { label: "AI Engine", role: "Processing", items: ["GPT-4o for language understanding", "Rule-based prompt orchestration", "Specialist-to-calendar routing"] },
+            { label: "Calendar Actions", role: "External", items: ["Google Calendar API (5 calendars)", "Real-time availability check", "Create, update, and cancel events"] },
+            { label: "Response & Storage", role: "Output", items: ["Natural language response", "Booking confirmation + calendar link", "Patient records via Baserow"] },
           ].map((col, i) => (
             <div key={i} style={{ flex: 1, borderRadius: 12, padding: "20px 16px", background: "var(--card)", border: "1px solid var(--border)", position: "relative" }}>
-              <div style={{ width: "100%", height: 3, background: col.color, borderRadius: 2, marginBottom: 14 }} />
+              <div style={{ fontSize: 10, fontFamily: "var(--mono)", color: "var(--accent)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 12 }}>{col.role}</div>
               <div style={{ fontSize: 14, fontWeight: 600, fontFamily: "var(--display)", color: "var(--fg)", marginBottom: 12 }}>{col.label}</div>
               {col.items.map((item, j) => (<div key={j} style={{ fontSize: 12.5, color: "var(--muted)", fontFamily: "var(--body)", lineHeight: 1.5, marginBottom: 6 }}>{item}</div>))}
               {i < 3 && !isMobile && <div style={{ position: "absolute", right: -14, top: "50%", transform: "translateY(-50%)", color: "var(--accent)", fontSize: 16, zIndex: 1 }}>→</div>}
@@ -203,7 +203,7 @@ const slides = [
       <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "100%" }}>
         <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>06 — Additional Project</div>
         <h2 style={{ fontSize: isMobile ? 24 : 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 32px", lineHeight: 1.2 }}>AI Product Search <span style={{ fontWeight: 600 }}>for Retail</span></h2>
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 16 : 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 16 : 24, alignItems: "center" }}>
           <div>
             <p style={{ fontSize: 15, color: "var(--fg)", fontFamily: "var(--body)", lineHeight: 1.7, marginBottom: 20 }}>Deployed an AI-powered product discovery assistant for a hardware retailer in Venezuela. Customers could search thousands of products using natural language via WhatsApp.</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -222,13 +222,13 @@ const slides = [
           <div style={{ background: "var(--card)", borderRadius: 12, padding: 24, border: "1px solid var(--border)" }}>
             <div style={{ fontSize: 11, fontFamily: "var(--mono)", color: "var(--accent)", letterSpacing: 2, marginBottom: 16, textTransform: "uppercase" }}>Conversation Example</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <Bubble side="right" text="Do you have small star screwdrivers?" />
-              <Bubble side="left" text={"Here are the closest options:\n\n1. ALLEN STAR T15 — 86.50 Bs\n2. ALLEN STAR T20 — 114.94 Bs\n3. ALLEN STAR T25 — 94.80 Bs\n\nWould you like any of these?"} />
-              <Bubble side="right" text="Do you have Milwaukee brand?" />
-              <Bubble side="left" text="I don't have Milwaukee right now. I can offer TOTAL and similar brands. Want to see alternatives?" />
-              <Bubble side="right" text="I'll go with option 2" />
-              <Bubble side="left" text={"Order summary:\n\n• ALLEN STAR T20 SECURITY\n• Qty: 1 — Price: 114.94 Bs\n\nI need your name, phone, payment method, and delivery preference."} />
-              <Bubble side="right" text="Roberto Gomez, delivery please" />
+              <Bubble side="right" text="Do you have small star screwdrivers?" index={0} />
+              <Bubble side="left" text={"Here are the closest options:\n\n1. ALLEN STAR T15 — 86.50 Bs\n2. ALLEN STAR T20 — 114.94 Bs\n3. ALLEN STAR T25 — 94.80 Bs\n\nWould you like any of these?"} index={1} />
+              <Bubble side="right" text="Do you have Milwaukee brand?" index={2} />
+              <Bubble side="left" text="I don't have Milwaukee right now. I can offer TOTAL and similar brands. Want to see alternatives?" index={3} />
+              <Bubble side="right" text="I'll go with option 2" index={4} />
+              <Bubble side="left" text={"Order summary:\n\n• ALLEN STAR T20 SECURITY\n• Qty: 1 — Price: 114.94 Bs\n\nI need your name, phone, payment method, and delivery preference."} index={5} />
+              <Bubble side="right" text="Roberto Gomez, delivery please" index={6} />
             </div>
           </div>
         </div>
@@ -296,6 +296,8 @@ const slides = [
 export default function CaseStudyDeck() {
   const [current, setCurrent] = useState(0);
   const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -315,9 +317,26 @@ export default function CaseStudyDeck() {
   return (
     <div ref={containerRef} tabIndex={0}
       onClick={(e) => { const rect = containerRef.current.getBoundingClientRect(); if (e.clientX - rect.left > rect.width / 2) setCurrent((p) => Math.min(p + 1, slides.length - 1)); else setCurrent((p) => Math.max(p - 1, 0)); }}
-      style={{ "--accent": "#E20074", "--fg": "#f0f0f0", "--muted": "#8a8a8a", "--card": "rgba(255,255,255,0.03)", "--border": "rgba(255,255,255,0.08)", "--display": "'DM Sans',sans-serif", "--body": "'DM Sans',sans-serif", "--mono": "'JetBrains Mono',monospace", width: "100%", height: "100vh", background: "#0a0a0a", overflowY: "auto", overflowX: "hidden", cursor: "pointer", position: "relative", userSelect: "none" }}>
+      onTouchStart={(e) => { setTouchEnd(null); setTouchStart(e.targetTouches[0].clientX); }}
+      onTouchMove={(e) => setTouchEnd(e.targetTouches[0].clientX)}
+      onTouchEnd={() => {
+        if (!touchStart || !touchEnd) return;
+        const dist = touchStart - touchEnd;
+        if (dist > 50) setCurrent((p) => Math.min(p + 1, slides.length - 1));
+        if (dist < -50) setCurrent((p) => Math.max(p - 1, 0));
+      }}
+      style={{ "--accent": "#E20074", "--fg": "#f0f0f0", "--muted": "#a1a1aa", "--card": "rgba(255,255,255,0.03)", "--border": "rgba(255,255,255,0.08)", "--display": "'DM Sans',sans-serif", "--body": "'DM Sans',sans-serif", "--mono": "'JetBrains Mono',monospace", width: "100%", height: "100vh", background: "#0a0a0a", overflowY: "auto", overflowX: "hidden", cursor: "pointer", position: "relative", userSelect: "none" }}>
+      <style>{`
+        @keyframes fadeInSlide {
+          from { opacity: 0; transform: translateY(15px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .slide-animate {
+          animation: fadeInSlide 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+      `}</style>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
-      <div style={{ width: "100%", minHeight: "100%", maxWidth: slides[current].id === "cover" ? "none" : 1100, margin: "0 auto", padding: slides[current].id === "cover" ? 0 : (isMobile ? "40px 20px 80px" : "40px 40px"), display: "flex", flexDirection: "column", justifyContent: "center" }}>{slides[current].render({ isMobile })}</div>
+      <div key={current} className="slide-animate" style={{ width: "100%", minHeight: "100%", maxWidth: slides[current].id === "cover" ? "none" : 1100, margin: "0 auto", padding: slides[current].id === "cover" ? 0 : (isMobile ? "40px 20px 80px" : "40px 40px"), display: "flex", flexDirection: "column", justifyContent: "center" }}>{slides[current].render({ isMobile })}</div>
       <div style={{ position: "fixed", bottom: 20, left: 0, right: 0, display: "flex", justifyContent: "center", alignItems: "center", gap: 6, zIndex: 10 }}>
         {slides.map((_, i) => (<div key={i} onClick={(e) => { e.stopPropagation(); setCurrent(i); }} style={{ width: i === current ? 24 : 8, height: 8, borderRadius: 4, background: i === current ? "var(--accent)" : "rgba(255,255,255,0.15)", transition: "all 0.3s ease", cursor: "pointer" }} />))}
       </div>
