@@ -19,16 +19,17 @@ const slides = [
   {
     id: "cover", render: () => (
       <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100%", textAlign: "center", position: "relative" }}>
-        <div style={{ position: "absolute", top: 40, left: 40, fontSize: 13, letterSpacing: 3, color: "var(--muted)", fontFamily: "var(--mono)", textTransform: "uppercase" }}>Case Study</div>
-        <img src="/logo.png" alt="AR" style={{ width: 48, height: 48, objectFit: "contain", marginBottom: 20, opacity: 0.7 }} />
-        <div style={{ width: 64, height: 3, background: "var(--accent)", margin: "0 auto 24px" }} />
-        <h1 style={{ fontSize: 52, fontWeight: 300, lineHeight: 1.15, fontFamily: "var(--display)", color: "var(--fg)", margin: 0, letterSpacing: -1 }}>
+        <div style={{ position: "absolute", top: -50, left: -50, right: -50, bottom: -50, backgroundImage: 'url("/banner.jpg")', backgroundSize: "cover", backgroundPosition: "center", filter: "blur(60px)", opacity: 0.15, zIndex: 0, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: 40, left: 40, fontSize: 13, letterSpacing: 3, color: "var(--muted)", fontFamily: "var(--mono)", textTransform: "uppercase", zIndex: 1 }}>Case Study</div>
+        <img src="/logo.png" alt="AR" style={{ width: 48, height: 48, objectFit: "contain", marginBottom: 20, opacity: 0.7, position: "relative", zIndex: 1 }} />
+        <div style={{ width: 64, height: 3, background: "var(--accent)", margin: "0 auto 24px", position: "relative", zIndex: 1 }} />
+        <h1 style={{ fontSize: 52, fontWeight: 300, lineHeight: 1.15, fontFamily: "var(--display)", color: "var(--fg)", margin: 0, letterSpacing: -1, position: "relative", zIndex: 1 }}>
           Designing an AI Concierge<br /><span style={{ fontWeight: 600 }}>for Healthcare</span>
         </h1>
-        <p style={{ fontSize: 18, color: "var(--muted)", marginTop: 20, fontFamily: "var(--body)" }}>
+        <p style={{ fontSize: 18, color: "var(--muted)", marginTop: 20, fontFamily: "var(--body)", position: "relative", zIndex: 1 }}>
           How conversational AI transformed appointment scheduling<br />for a dental clinic in Buenos Aires
         </p>
-        <div style={{ position: "absolute", bottom: 40, display: "flex", gap: 32, fontSize: 13, color: "var(--muted)", fontFamily: "var(--mono)" }}>
+        <div style={{ position: "absolute", bottom: 40, display: "flex", gap: 32, fontSize: 13, color: "var(--muted)", fontFamily: "var(--mono)", zIndex: 1 }}>
           <span>Agustín Rüdegar</span><span style={{ color: "var(--border)" }}>·</span><span>AI Product Designer</span>
         </div>
       </div>
@@ -67,7 +68,7 @@ const slides = [
       <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "100%", padding: "0 20px" }}>
         <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>02 — User Journey</div>
         <h2 style={{ fontSize: 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 36px", lineHeight: 1.2 }}>From first message to <span style={{ fontWeight: 600 }}>confirmed appointment</span></h2>
-        <div style={{ display: "flex", gap: 4, alignItems: "stretch" }}>
+        <div style={{ display: "flex", gap: 24, alignItems: "stretch" }}>
           {[
             { step: "01", title: "Intent Recognition", desc: "Patient messages on WhatsApp. AI identifies need: booking, info, rescheduling, or cancellation." },
             { step: "02", title: "Smart Routing", desc: "AI maps symptoms or needs to the right specialist and their specific calendar." },
@@ -79,7 +80,7 @@ const slides = [
               <div style={{ fontSize: 20, fontWeight: 700, fontFamily: "var(--display)", color: "var(--accent)", opacity: 0.4, marginBottom: 10 }}>{s.step}</div>
               <div style={{ fontSize: 15, fontWeight: 600, fontFamily: "var(--display)", color: "var(--fg)", marginBottom: 8 }}>{s.title}</div>
               <div style={{ fontSize: 12.5, color: "var(--muted)", fontFamily: "var(--body)", lineHeight: 1.55 }}>{s.desc}</div>
-              {i < 4 && <div style={{ position: "absolute", right: -12, top: "50%", transform: "translateY(-50%)", color: "var(--accent)", fontSize: 18, zIndex: 1 }}>→</div>}
+              {i < 4 && <div style={{ position: "absolute", right: -18, top: "50%", transform: "translateY(-50%)", color: "var(--accent)", fontSize: 18, zIndex: 1 }}>→</div>}
             </div>
           ))}
         </div>
@@ -150,10 +151,10 @@ const slides = [
         <h2 style={{ fontSize: 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 32px", lineHeight: 1.2 }}>Architecture built for <span style={{ fontWeight: 600 }}>reliability</span></h2>
         <div style={{ display: "flex", gap: 16, marginBottom: 28 }}>
           {[
-            { label: "Message Ingestion", items: ["WhatsApp via Evolution API", "Redis message buffering", "Session state management"], color: "#3b82f6" },
+            { label: "Message Ingestion", items: ["WhatsApp via Evolution API", "Redis message buffering", "Session state management"], color: "var(--accent)" },
             { label: "AI Engine", items: ["GPT-4o for language understanding", "Rule-based prompt orchestration", "Specialist-to-calendar routing"], color: "var(--accent)" },
-            { label: "Calendar Actions", items: ["Google Calendar API (5 calendars)", "Real-time availability check", "Create, update, and cancel events"], color: "#22c55e" },
-            { label: "Response & Storage", items: ["Natural language response", "Booking confirmation + calendar link", "Patient records via Baserow"], color: "#a855f7" },
+            { label: "Calendar Actions", items: ["Google Calendar API (5 calendars)", "Real-time availability check", "Create, update, and cancel events"], color: "var(--accent)" },
+            { label: "Response & Storage", items: ["Natural language response", "Booking confirmation + calendar link", "Patient records via Baserow"], color: "var(--accent)" },
           ].map((col, i) => (
             <div key={i} style={{ flex: 1, borderRadius: 12, padding: "20px 16px", background: "var(--card)", border: "1px solid var(--border)", position: "relative" }}>
               <div style={{ width: "100%", height: 3, background: col.color, borderRadius: 2, marginBottom: 14 }} />
@@ -259,7 +260,7 @@ const slides = [
           and what lies beyond both.
         </p>
         <div style={{ marginTop: 36, display: "flex", gap: 24, fontSize: 13, color: "var(--muted)", fontFamily: "var(--mono)" }}>
-          <span>agustinrudegar.com</span><span style={{ color: "var(--border)" }}>·</span><span>projects@agustinrudegar.com</span>
+          <a href="https://agustinrudegar.com" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>agustinrudegar.com</a><span style={{ color: "var(--border)" }}>·</span><a href="mailto:agustin.rudegar@gmail.com" style={{ color: "inherit", textDecoration: "none" }}>agustin.rudegar@gmail.com</a>
         </div>
       </div>
     )
