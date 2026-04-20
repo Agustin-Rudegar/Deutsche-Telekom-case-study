@@ -25,18 +25,18 @@ const slides = [
             color1="#E20074"
             color2="#000000"
             color3="#000000"
-            timeSpeed={0.1}
-            colorBalance={0}
-            warpStrength={0.4}
-            warpFrequency={5.2}
-            warpSpeed={1}
-            warpAmplitude={10}
-            blendAngle={3}
+            timeSpeed={0.85}
+            colorBalance={-0.4}
+            warpStrength={1.75}
+            warpFrequency={3.1}
+            warpSpeed={0.9}
+            warpAmplitude={37}
+            blendAngle={53}
             blendSoftness={0.41}
             rotationAmount={0}
-            noiseScale={0.2}
-            grainAmount={0.05}
-            grainScale={0.5}
+            noiseScale={0.4}
+            grainAmount={0.08}
+            grainScale={1.6}
             grainAnimated={false}
             contrast={1.5}
             gamma={1}
@@ -315,7 +315,8 @@ export default function CaseStudyDeck() {
         {slides.map((_, i) => (<div key={i} onClick={(e) => { e.stopPropagation(); setCurrent(i); }} style={{ width: i === current ? 24 : 8, height: 8, borderRadius: 4, background: i === current ? "var(--accent)" : "rgba(255,255,255,0.15)", transition: "all 0.3s ease", cursor: "pointer" }} />))}
       </div>
       <div style={{ position: "absolute", bottom: 20, right: 30, fontSize: 12, fontFamily: "var(--mono)", color: "var(--muted)" }}>{current + 1} / {slides.length}</div>
-      <div style={{ position: "absolute", bottom: 20, left: 30, fontSize: 11, fontFamily: "var(--mono)", color: "#000" }}>← → or click to navigate</div>
+      <div style={{ position: "absolute", bottom: 20, left: 30, fontSize: 11, fontFamily: "var(--mono)", color: "rgba(255,255,255,0.2)" }}>← → or click to navigate</div>
     </div>
   );
 }
+
