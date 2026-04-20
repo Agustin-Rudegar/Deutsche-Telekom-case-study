@@ -86,77 +86,53 @@ const Grainient = ({
         return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
       }
 
-      // Simplex 2D noise (optimized)
+      // --- Soft Noise Logic ---
       vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
       float snoise(vec2 v){
         const vec4 C = vec4(0.211324865405187, 0.366025403784439,
                  -0.577350269189626, 0.024390243902439);
         vec2 i  = floor(v + dot(v, C.yy) );
         vec2 x0 = v -   i + dot(i, C.xx);
-        vec2 i1;
-        i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+        vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
         vec4 x12 = x0.xyxy + C.xxzz;
         x12.xy -= i1;
         i = mod(i, 289.0);
-        vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
-        + i.x + vec3(0.0, i1.x, 1.0 ));
-        vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
-          dot(x12.zw,x12.zw)), 0.0);
-        m = m*m ;
-        m = m*m ;
+        vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
+        vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+        m = m*m*m*m;
         vec3 x = 2.0 * fract(p * C.www) - 1.0;
         vec3 h = abs(x) - 0.5;
         vec3 ox = floor(x + 0.5);
         vec3 a0 = x - ox;
-        m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+        m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
         vec3 g;
         g.x  = a0.x  * x0.x  + h.x  * x0.y;
         g.yz = a0.yz * x12.xz + h.yz * x12.yw;
         return 130.0 * dot(m, g);
       }
 
-      float fbm(vec2 p) {
-        float v = 0.0;
-        float a = 0.5;
-        vec2 shift = vec2(100.0);
-        for (int i = 0; i < 4; ++i) {
-          v += a * snoise(p);
-          p = p * 2.0 + shift;
-          a *= 0.5;
-        }
-        return v;
-      }
-
       void main() {
         vec2 uv = (vUv - uCenter) / uZoom + uCenter;
         float t = uTime * uWarpSpeed;
         
-        // --- Domain Warping (Liquid Effect) ---
-        vec2 q = vec2(0.0);
-        q.x = fbm(uv * uWarpFrequency + vec2(0.0, 0.0) + t * 0.1);
-        q.y = fbm(uv * uWarpFrequency + vec2(5.2, 1.3) + t * 0.15);
-
-        vec2 r = vec2(0.0);
-        r.x = fbm(uv * uWarpFrequency + 4.0 * q + vec2(1.7, 9.2) + t * 0.05);
-        r.y = fbm(uv * uWarpFrequency + 4.0 * q + vec2(8.3, 2.8) + t * 0.08);
-
-        float f = fbm(uv * uWarpFrequency + 4.0 * r);
+        // --- Large Scale Soft Drift ---
+        float n1 = snoise(uv * uWarpFrequency * 0.5 + t * 0.2);
+        float n2 = snoise(uv * uWarpFrequency * 0.3 - t * 0.1);
         
-        // --- Color Mixing ---
+        // --- Soft Blending ---
         float angle = uBlendAngle * 3.14159 / 180.0;
         vec2 dir = vec2(cos(angle), sin(angle));
         float dist = dot(uv - 0.5, dir) + 0.5;
         
-        // Base mix influenced by warp and balance
-        float mixBase = smoothstep(0.5 - uBlendSoftness - uColorBalance, 0.5 + uBlendSoftness - uColorBalance, dist + f * uWarpStrength * 0.5);
+        // Use high blendSoftness for the blurred look
+        float mask1 = smoothstep(0.5 - uBlendSoftness - uColorBalance, 0.5 + uBlendSoftness - uColorBalance, dist + n1 * uWarpStrength * 0.1);
+        vec3 color = mix(uColor1, uColor2, mask1);
         
-        vec3 color = mix(uColor1, uColor2, mixBase);
-        
-        // Secondary warp mix for the third color
-        float mixSecond = smoothstep(0.2, 0.8, f + q.x * uWarpStrength);
-        color = mix(color, uColor3, mixSecond * 0.7);
+        // Soft overlay of the third color
+        float mask2 = smoothstep(-0.2, 1.2, n2 + 0.5);
+        color = mix(color, uColor3, mask2 * 0.4);
 
-        // --- Post Processing ---
+        // --- Clean Post Processing ---
         color = pow(max(color, 0.0), vec3(1.0 / uGamma));
         color = mix(vec3(0.5), color, uContrast);
         
@@ -164,13 +140,14 @@ const Grainient = ({
         hsv.y *= uSaturation;
         color = hsv2rgb(hsv);
 
-        // --- Film Grain ---
-        float grainTime = uGrainAnimated ? uTime * 10.0 : 0.0;
+        // --- Minimal Grain ---
+        float grainTime = uGrainAnimated ? uTime * 5.0 : 0.0;
         float grain = random(vUv * uGrainScale + grainTime);
         color += (grain - 0.5) * uGrainAmount;
 
         gl_FragColor = vec4(color, 1.0);
       }
+
     `;
 
     const resize = () => {
