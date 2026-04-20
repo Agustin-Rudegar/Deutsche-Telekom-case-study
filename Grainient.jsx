@@ -1,28 +1,28 @@
 import React, { useMemo, useRef, useEffect } from "react";
 
 const Grainient = ({
-  color1 = "#ff0000",
-  color2 = "#00ff00",
-  color3 = "#0000ff",
-  timeSpeed = 0.2,
-  colorBalance = 0.5,
-  warpStrength = 1.0,
-  warpFrequency = 1.0,
-  warpSpeed = 1.0,
-  warpAmplitude = 1.0,
-  blendAngle = 0.0,
-  blendSoftness = 0.5,
-  rotationAmount = 0.0,
-  noiseScale = 1.0,
-  grainAmount = 0.05,
-  grainScale = 1.0,
-  grainAnimated = true,
-  contrast = 1.0,
-  gamma = 1.0,
-  saturation = 1.0,
-  centerX = 0.5,
-  centerY = 0.5,
-  zoom = 1.0,
+  color1 = "#E20074",
+  color2 = "#000000",
+  color3 = "#000000",
+  timeSpeed = 0.25,
+  colorBalance = 0,
+  warpStrength = 1,
+  warpFrequency = 5.2,
+  warpSpeed = 2,
+  warpAmplitude = 33,
+  blendAngle = 3,
+  blendSoftness = 0.41,
+  rotationAmount = 0,
+  noiseScale = 1.1,
+  grainAmount = 0.08,
+  grainScale = 2,
+  grainAnimated = false,
+  contrast = 1.5,
+  gamma = 1,
+  saturation = 1,
+  centerX = 0,
+  centerY = 0,
+  zoom = 0.9,
   ...props
 }) => {
   const canvasRef = useRef(null);
@@ -97,30 +97,46 @@ const Grainient = ({
       }
 
       void main() {
+        // Apply zoom and center
         vec2 uv = (vUv - uCenter) / uZoom + uCenter;
+        
+        // Time constant
         float t = uTime * uWarpSpeed;
         
+        // Organic warping
         vec2 p = uv * uWarpFrequency;
-        float n = noise(p + t) * uWarpStrength;
-        uv += vec2(cos(n * uWarpAmplitude), sin(n * uWarpAmplitude)) * 0.01;
+        float n1 = noise(p + t * 0.5);
+        float n2 = noise(p.yx - t * 0.3);
+        
+        // Very subtle displacement based on warp parameters
+        float warpScale = uWarpStrength * 0.02;
+        uv.x += sin(n1 * uWarpAmplitude) * warpScale;
+        uv.y += cos(n2 * uWarpAmplitude) * warpScale;
 
+        // Blob-based color blending (much more subtle and organic than linear)
+        float mix1 = noise(uv * 1.5 + t * 0.2);
+        float mix2 = noise(uv * 2.0 - t * 0.15);
+        
+        // Base gradient influenced by the blend angle
         float angle = uBlendAngle * 3.14159 / 180.0;
         vec2 dir = vec2(cos(angle), sin(angle));
         float dist = dot(uv - 0.5, dir) + 0.5;
+        float baseMix = smoothstep(0.5 - uBlendSoftness - uColorBalance, 0.5 + uBlendSoftness - uColorBalance, dist);
         
-        float factor = smoothstep(0.5 - uBlendSoftness - uColorBalance, 0.5 + uBlendSoftness - uColorBalance, dist);
-        vec3 color = mix(uColor1, uColor2, factor);
-        color = mix(color, uColor3, smoothstep(0.0, 1.0, noise(uv * 2.0 + t * 0.5)));
+        vec3 color = mix(uColor1, uColor2, baseMix);
+        // Blend in the third color using the noise blobs
+        color = mix(color, uColor3, mix1 * 0.6 + mix2 * 0.4);
 
-        // Contrast/Gamma/Saturation
-        color = pow(color, vec3(1.0 / uGamma));
+        // Adjust Contrast, Gamma, Saturation
+        color = pow(max(color, 0.0), vec3(1.0 / uGamma));
         color = mix(vec3(0.5), color, uContrast);
+        
         vec3 hsv = rgb2hsv(color);
         hsv.y *= uSaturation;
         color = hsv2rgb(hsv);
 
-        // Grain
-        float grainTime = uGrainAnimated ? uTime : 0.0;
+        // Subtle Grain
+        float grainTime = uGrainAnimated ? uTime * 10.0 : 0.0;
         float grain = random(vUv * uGrainScale + grainTime);
         color += (grain - 0.5) * uGrainAmount;
 
