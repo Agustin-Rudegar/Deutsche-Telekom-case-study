@@ -144,10 +144,25 @@ const Grainient = ({
       }
     `;
 
+    const resize = () => {
+      const displayWidth = Math.floor(canvas.clientWidth * window.devicePixelRatio);
+      const displayHeight = Math.floor(canvas.clientHeight * window.devicePixelRatio);
+      if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
+        canvas.width = displayWidth;
+        canvas.height = displayHeight;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+    };
+    window.addEventListener("resize", resize);
+    resize();
+
     const createShader = (type, source) => {
       const shader = gl.createShader(type);
       gl.shaderSource(shader, source);
       gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        console.error(gl.getShaderInfoLog(shader));
+      }
       return shader;
     };
 
@@ -200,9 +215,14 @@ const Grainient = ({
       gl.uniform1f(gl.getUniformLocation(program, "uZoom"), zoom);
 
       gl.drawArrays(gl.TRIANGLES, 0, 6);
-      requestAnimationFrame(render);
+      requestAnimationFrameId = requestAnimationFrame(render);
     };
-    requestAnimationFrame(render);
+    let requestAnimationFrameId = requestAnimationFrame(render);
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(requestAnimationFrameId);
+    };
   }, [color1, color2, color3, timeSpeed, colorBalance, warpStrength, warpFrequency, warpSpeed, warpAmplitude, blendAngle, blendSoftness, noiseScale, grainAmount, grainScale, grainAnimated, contrast, gamma, saturation, centerX, centerY, zoom]);
 
   return <canvas ref={canvasRef} style={{ width: "100%", height: "100%", display: "block" }} {...props} />;
