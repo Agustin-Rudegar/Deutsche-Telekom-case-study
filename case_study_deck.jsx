@@ -328,7 +328,7 @@ export default function CaseStudyDeck() {
         if (dist > 50) setCurrent((p) => Math.min(p + 1, slides.length - 1));
         if (dist < -50) setCurrent((p) => Math.max(p - 1, 0));
       }}
-      style={{ "--accent": "#E20074", "--fg": "#f0f0f0", "--muted": "#a1a1aa", "--card": "rgba(255,255,255,0.03)", "--border": "rgba(255,255,255,0.08)", "--display": "'DM Sans',sans-serif", "--body": "'DM Sans',sans-serif", "--mono": "'JetBrains Mono',monospace", width: "100%", height: "100dvh", background: "#0a0a0a", overflowY: "auto", overflowX: "hidden", cursor: "pointer", position: "relative", userSelect: "none" }}>
+      style={{ "--accent": "#E20074", "--fg": "#f0f0f0", "--muted": "#a1a1aa", "--card": "rgba(255,255,255,0.03)", "--border": "rgba(255,255,255,0.08)", "--display": "'DM Sans',sans-serif", "--body": "'DM Sans',sans-serif", "--mono": "'JetBrains Mono',monospace", width: "100%", height: "100%", display: "flex", flexDirection: "column", background: "#0a0a0a", overflowY: "auto", overflowX: "hidden", cursor: "pointer", position: "relative", userSelect: "none" }}>
       <style>{`
         @keyframes fadeInSlide {
           from { opacity: 0; transform: translateY(15px); }
