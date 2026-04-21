@@ -339,7 +339,7 @@ export default function CaseStudyDeck() {
         }
       `}</style>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
-      <div key={current} className="slide-animate" style={{ width: "100%", minHeight: "100%", maxWidth: slides[current].id === "cover" ? "none" : 1100, margin: "0 auto", padding: slides[current].id === "cover" ? 0 : (isMobile ? "40px 20px 80px" : "40px 40px"), display: "flex", flexDirection: "column", justifyContent: "center" }}>{slides[current].render({ isMobile })}</div>
+      <div key={current} className="slide-animate" style={{ width: "100%", flex: "1 0 auto", maxWidth: slides[current].id === "cover" ? "none" : 1100, margin: "0 auto", padding: slides[current].id === "cover" ? 0 : (isMobile ? "40px 20px 80px" : "40px 40px"), display: "flex", flexDirection: "column", justifyContent: "center" }}>{slides[current].render({ isMobile })}</div>
       <div style={{ position: "fixed", bottom: 20, left: 0, right: 0, display: "flex", justifyContent: "center", alignItems: "center", gap: 6, zIndex: 10 }}>
         {slides.map((_, i) => (<div key={i} onClick={(e) => { e.stopPropagation(); setCurrent(i); }} style={{ width: i === current ? 24 : 8, height: 8, borderRadius: 4, background: i === current ? "var(--accent)" : "rgba(255,255,255,0.15)", transition: "all 0.3s ease", cursor: "pointer" }} />))}
       </div>
