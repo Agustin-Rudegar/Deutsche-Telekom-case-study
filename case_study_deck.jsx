@@ -124,7 +124,7 @@ const slides = [
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 16 : 20 }}>
           {[
             { q: "What if the patient doesn't know which specialist they need?", a: "Default to General Dentistry. The AI tells them: \"Dr. Acosta will evaluate you and refer you to the right specialist if needed.\" This removes friction — patients don't need medical knowledge to book.", label: "Reduce cognitive load" },
-            { q: "How do you prevent AI hallucination in healthcare?", a: "A strict behavioral rule in the system prompt: \"NEVER invent anything. If you don't have the real data, always ask the user.\" The AI validates availability before every booking and never confirms without a real event ID.", label: "Anti-hallucination by design" },
+            { q: "How do you prevent AI hallucination in healthcare?", a: "A strict behavioral rule in the system prompt: \"NEVER invent anything. If you don't have the real data, always ask the user.\" The AI validates availability before every booking and never confirms without a real ID.", label: "Anti-hallucination by design" },
             { q: "What happens when the patient's preferred slot isn't available?", a: "The AI proposes alternatives on the same day or nearby dates, presenting 2-3 options. It never dead-ends — always offers a path forward. And it never apologizes first; it leads with solutions.", label: "Graceful negotiation" },
             { q: "How does the AI handle rescheduling?", a: "One message from the patient triggers a chain: validate new slot → cancel old event → book new event → confirm both actions. The AI handles the complexity so the patient doesn't have to.", label: "Autonomous orchestration" },
           ].map((d, i) => (
@@ -183,7 +183,7 @@ const slides = [
             { label: "Message Ingestion", role: "Input", items: ["WhatsApp via Evolution API", "Redis message buffering", "Session state management"] },
             { label: "AI Engine", role: "Processing", items: ["GPT-4o for language understanding", "Rule-based prompt orchestration", "Specialist-to-calendar routing"] },
             { label: "Calendar Actions", role: "External", items: ["Google Calendar API (5 calendars)", "Real-time availability check", "Create, update, and cancel events"] },
-            { label: "Response & Storage", role: "Output", items: ["Natural language response", "Booking confirmation + calendar link", "Patient records via Baserow"] },
+            { label: "Response & Storage", role: "Output", items: ["Natural language response", "Booking conf. + calendar link", "Patient records via Baserow"] },
           ].map((col, i) => (
             <div key={i} style={{ flex: 1, borderRadius: 12, padding: "20px 16px", background: "var(--card)", border: "1px solid var(--border)", position: "relative" }}>
               <div style={{ fontSize: 10, fontFamily: "var(--mono)", color: "var(--accent)", letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 12 }}>{col.role}</div>
