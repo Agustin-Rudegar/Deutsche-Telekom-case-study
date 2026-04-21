@@ -19,7 +19,7 @@ function Bubble({ side, text, index = 0 }) {
 const slides = [
   {
     id: "cover", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100vh", width: "100%", textAlign: "center", position: "relative", overflow: "hidden", padding: isMobile ? "0 20px" : 0 }}>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100dvh", width: "100%", textAlign: "center", position: "relative", overflow: "hidden", padding: isMobile ? "0 20px" : 0 }}>
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 0, pointerEvents: "none", opacity: 1 }}>
           <Grainient
             color1="#000000"
@@ -248,7 +248,7 @@ const slides = [
             { num: "01", title: "The edge cases ARE the design", desc: "The happy path is easy. What matters is what happens when the AI can't find a slot, when the patient writes with typos, or asks something outside scope. Each moment is a trust-building opportunity." },
             { num: "02", title: "Prototyping with real AI reveals what mockups can't", desc: "The same question can produce different answers. Testing with the actual model exposed edge cases in tone, timing, and failure modes that only appear with live output." },
             { num: "03", title: "Transparency builds trust faster than perfection", desc: "When the AI couldn't access a calendar, it said so honestly and offered alternatives. Users responded better to honest limitations than to a system that pretended to be perfect." },
-            { num: "04", title: "Human handoff is a design decision, not a failure", desc: "AI it can schedule appointments on its own, but medical advice and payment processing is always for a human. Knowing when NOT to use AI is just as important as knowing when to use it." },
+            { num: "04", title: "Human handoff is a design decision", desc: "AI it can schedule appointments on its own, but medical advice and payment processing is always for a human. Knowing when NOT to use AI is just as important as knowing when to use it." },
             { num: "05", title: "Conversation design is interaction design", desc: "Every AI response is a UI element. The structure, tone, and information hierarchy of a WhatsApp message requires the same design thinking as any visual interface." },
             { num: "06", title: "Scale reveals design flaws", desc: "Managing 5 specialist calendars with different schedules and availability rules taught me that AI experience design must account for system complexity the user never sees." },
           ].map((l, i) => (
@@ -328,7 +328,7 @@ export default function CaseStudyDeck() {
         if (dist > 50) setCurrent((p) => Math.min(p + 1, slides.length - 1));
         if (dist < -50) setCurrent((p) => Math.max(p - 1, 0));
       }}
-      style={{ "--accent": "#E20074", "--fg": "#f0f0f0", "--muted": "#a1a1aa", "--card": "rgba(255,255,255,0.03)", "--border": "rgba(255,255,255,0.08)", "--display": "'DM Sans',sans-serif", "--body": "'DM Sans',sans-serif", "--mono": "'JetBrains Mono',monospace", width: "100%", height: "100vh", background: "#0a0a0a", overflowY: "auto", overflowX: "hidden", cursor: "pointer", position: "relative", userSelect: "none" }}>
+      style={{ "--accent": "#E20074", "--fg": "#f0f0f0", "--muted": "#a1a1aa", "--card": "rgba(255,255,255,0.03)", "--border": "rgba(255,255,255,0.08)", "--display": "'DM Sans',sans-serif", "--body": "'DM Sans',sans-serif", "--mono": "'JetBrains Mono',monospace", width: "100%", height: "100dvh", background: "#0a0a0a", overflowY: "auto", overflowX: "hidden", cursor: "pointer", position: "relative", userSelect: "none" }}>
       <style>{`
         @keyframes fadeInSlide {
           from { opacity: 0; transform: translateY(15px); }
