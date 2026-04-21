@@ -66,7 +66,7 @@ const slides = [
   },
   {
     id: "problem", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", flex: 1, width: "100%" }}>
         <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>01 — The Problem</div>
         <h2 style={{ fontSize: isMobile ? 28 : 38, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 40px", lineHeight: 1.2 }}>A clinic drowning in<br /><span style={{ fontWeight: 600 }}>WhatsApp messages</span></h2>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 16 : 32 }}>
@@ -94,7 +94,7 @@ const slides = [
   },
   {
     id: "journey", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", flex: 1, width: "100%" }}>
         <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>02 — User Journey</div>
         <h2 style={{ fontSize: isMobile ? 24 : 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 36px", lineHeight: 1.2 }}>From first message to <span style={{ fontWeight: 600 }}>confirmed appointment</span></h2>
         <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? 12 : 24, alignItems: "stretch" }}>
@@ -118,7 +118,7 @@ const slides = [
   },
   {
     id: "decisions", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", flex: 1, width: "100%" }}>
         <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>03 — Design Decisions</div>
         <h2 style={{ fontSize: isMobile ? 24 : 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 32px", lineHeight: 1.2 }}>The choices that shaped <span style={{ fontWeight: 600 }}>trust</span></h2>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 16 : 20 }}>
@@ -140,7 +140,7 @@ const slides = [
   },
   {
     id: "conversation", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", flex: 1, width: "100%" }}>
         <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>04 — Conversation Design</div>
         <h2 style={{ fontSize: isMobile ? 24 : 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 28px", lineHeight: 1.2 }}>Real conversations, <span style={{ fontWeight: 600 }}>real patients</span></h2>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 16 : 24 }}>
@@ -175,7 +175,7 @@ const slides = [
   },
   {
     id: "system", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", flex: 1, width: "100%" }}>
         <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>05 — System Overview</div>
         <h2 style={{ fontSize: isMobile ? 24 : 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 32px", lineHeight: 1.2 }}>Architecture built for <span style={{ fontWeight: 600 }}>reliability</span></h2>
         <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? 12 : 16, marginBottom: 28 }}>
@@ -203,7 +203,7 @@ const slides = [
   },
   {
     id: "second", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", flex: 1, width: "100%" }}>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 16 : 24, alignItems: "center" }}>
           <div>
             <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>06 — Additional Project</div>
@@ -240,7 +240,7 @@ const slides = [
   },
   {
     id: "learnings", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", height: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", flex: 1, width: "100%" }}>
         <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>07 — What I Learned</div>
         <h2 style={{ fontSize: isMobile ? 24 : 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 36px", lineHeight: 1.2 }}>Designing for AI means<br /><span style={{ fontWeight: 600 }}>designing for uncertainty</span></h2>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: isMobile ? 16 : 20 }}>
@@ -264,7 +264,7 @@ const slides = [
   },
   {
     id: "connection", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100%", textAlign: "center" }}>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", flex: 1, width: "100%", textAlign: "center" }}>
         <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 24 }}>08 — Why Deutsche Telekom</div>
         <h2 style={{ fontSize: isMobile ? 28 : 38, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 40px", lineHeight: 1.3 }}>Ready to design<br /><span style={{ fontWeight: 600 }}>AI experiences at scale</span></h2>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: isMobile ? 16 : 20, width: "100%", marginBottom: 40 }}>
