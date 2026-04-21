@@ -66,8 +66,7 @@ const slides = [
   },
   {
     id: "problem", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", flex: 1, width: "100%" }}>
-        <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>01 — The Problem</div>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100dvh", width: "100%", textAlign: "center", position: "relative", overflow: "hidden", padding: isMobile ? "0 20px" : 0 }}>        <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>01 — The Problem</div>
         <h2 style={{ fontSize: isMobile ? 28 : 38, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 40px", lineHeight: 1.2 }}>A clinic drowning in<br /><span style={{ fontWeight: 600 }}>WhatsApp messages</span></h2>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 16 : 32 }}>
           <div style={{ background: "var(--card)", borderRadius: 12, padding: 28, border: "1px solid var(--border)" }}>
@@ -94,8 +93,7 @@ const slides = [
   },
   {
     id: "journey", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", flex: 1, width: "100%" }}>
-        <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>02 — User Journey</div>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100dvh", width: "100%", textAlign: "center", position: "relative", overflow: "hidden", padding: isMobile ? "0 20px" : 0 }}>        <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>02 — User Journey</div>
         <h2 style={{ fontSize: isMobile ? 24 : 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 36px", lineHeight: 1.2 }}>From first message to <span style={{ fontWeight: 600 }}>confirmed appointment</span></h2>
         <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? 12 : 24, alignItems: "stretch" }}>
           {[
@@ -118,8 +116,7 @@ const slides = [
   },
   {
     id: "decisions", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", flex: 1, width: "100%" }}>
-        <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>03 — Design Decisions</div>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100dvh", width: "100%", textAlign: "center", position: "relative", overflow: "hidden", padding: isMobile ? "0 20px" : 0 }}>        <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>03 — Design Decisions</div>
         <h2 style={{ fontSize: isMobile ? 24 : 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 32px", lineHeight: 1.2 }}>The choices that shaped <span style={{ fontWeight: 600 }}>trust</span></h2>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 16 : 20 }}>
           {[
@@ -140,8 +137,7 @@ const slides = [
   },
   {
     id: "conversation", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", flex: 1, width: "100%" }}>
-        <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>04 — Conversation Design</div>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100dvh", width: "100%", textAlign: "center", position: "relative", overflow: "hidden", padding: isMobile ? "0 20px" : 0 }}>        <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>04 — Conversation Design</div>
         <h2 style={{ fontSize: isMobile ? 24 : 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 28px", lineHeight: 1.2 }}>Real conversations, <span style={{ fontWeight: 600 }}>real patients</span></h2>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 16 : 24 }}>
           <div style={{ background: "var(--card)", borderRadius: 12, padding: 24, border: "1px solid var(--border)" }}>
@@ -175,8 +171,7 @@ const slides = [
   },
   {
     id: "system", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", flex: 1, width: "100%" }}>
-        <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>05 — System Overview</div>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100dvh", width: "100%", textAlign: "center", position: "relative", overflow: "hidden", padding: isMobile ? "0 20px" : 0 }}>        <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>05 — System Overview</div>
         <h2 style={{ fontSize: isMobile ? 24 : 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 32px", lineHeight: 1.2 }}>Architecture built for <span style={{ fontWeight: 600 }}>reliability</span></h2>
         <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? 12 : 16, marginBottom: 28 }}>
           {[
@@ -203,45 +198,43 @@ const slides = [
   },
   {
     id: "second", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", flex: 1, width: "100%" }}>
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 16 : 24, alignItems: "center" }}>
-          <div>
-            <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>06 — Additional Project</div>
-            <h2 style={{ fontSize: isMobile ? 24 : 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 32px", lineHeight: 1.2 }}>AI Product Search <span style={{ fontWeight: 600 }}>for Retail</span></h2>
-            <p style={{ fontSize: 15, color: "var(--fg)", fontFamily: "var(--body)", lineHeight: 1.7, marginBottom: 20 }}>Deployed an AI-powered product discovery assistant for a hardware retailer in Venezuela. Customers could search thousands of products using natural language via WhatsApp.</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-              {[
-                { label: "Semantic Search", desc: "Vector database (Qdrant) with product catalog embeddings enabled fuzzy, intent-based search instead of exact keyword matching" },
-                { label: "Smart Alternatives", desc: "When a specific brand wasn't available, the AI proactively suggested comparable alternatives from available stock" },
-                { label: "Human Handoff", desc: "The AI's role was explicitly defined: inform, assist, and transfer. After product selection, the order was sent to both the human agent and the customer for validation" },
-              ].map((item, i) => (
-                <div key={i} style={{ borderLeft: "2px solid var(--accent)", paddingLeft: 16 }}>
-                  <div style={{ fontSize: 13, fontWeight: 600, fontFamily: "var(--display)", color: "var(--fg)", marginBottom: 4 }}>{item.label}</div>
-                  <div style={{ fontSize: 12.5, color: "var(--muted)", fontFamily: "var(--body)", lineHeight: 1.5 }}>{item.desc}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div style={{ background: "var(--card)", borderRadius: 12, padding: 24, border: "1px solid var(--border)" }}>
-            <div style={{ fontSize: 11, fontFamily: "var(--mono)", color: "var(--accent)", letterSpacing: 2, marginBottom: 16, textTransform: "uppercase" }}>Conversation Example</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <Bubble side="right" text="Do you have small star screwdrivers?" index={0} />
-              <Bubble side="left" text={"Here are the closest options:\n\n1. ALLEN STAR T15 — 86.50 Bs\n2. ALLEN STAR T20 — 114.94 Bs\n3. ALLEN STAR T25 — 94.80 Bs\n\nWould you like any of these?"} index={1} />
-              <Bubble side="right" text="Do you have Milwaukee brand?" index={2} />
-              <Bubble side="left" text="I don't have Milwaukee right now. I can offer TOTAL and similar brands. Want to see alternatives?" index={3} />
-              <Bubble side="right" text="I'll go with option 2" index={4} />
-              <Bubble side="left" text={"Order summary:\n\n• ALLEN STAR T20 SECURITY\n• Qty: 1 — Price: 114.94 Bs\n\nI need your name, phone, payment method, and delivery preference."} index={5} />
-              <Bubble side="right" text="Roberto Gomez, delivery please" index={6} />
-            </div>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100dvh", width: "100%", textAlign: "center", position: "relative", overflow: "hidden", padding: isMobile ? "0 20px" : 0 }}>        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 16 : 24, alignItems: "center" }}>
+        <div>
+          <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>06 — Additional Project</div>
+          <h2 style={{ fontSize: isMobile ? 24 : 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 32px", lineHeight: 1.2 }}>AI Product Search <span style={{ fontWeight: 600 }}>for Retail</span></h2>
+          <p style={{ fontSize: 15, color: "var(--fg)", fontFamily: "var(--body)", lineHeight: 1.7, marginBottom: 20 }}>Deployed an AI-powered product discovery assistant for a hardware retailer in Venezuela. Customers could search thousands of products using natural language via WhatsApp.</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            {[
+              { label: "Semantic Search", desc: "Vector database (Qdrant) with product catalog embeddings enabled fuzzy, intent-based search instead of exact keyword matching" },
+              { label: "Smart Alternatives", desc: "When a specific brand wasn't available, the AI proactively suggested comparable alternatives from available stock" },
+              { label: "Human Handoff", desc: "The AI's role was explicitly defined: inform, assist, and transfer. After product selection, the order was sent to both the human agent and the customer for validation" },
+            ].map((item, i) => (
+              <div key={i} style={{ borderLeft: "2px solid var(--accent)", paddingLeft: 16 }}>
+                <div style={{ fontSize: 13, fontWeight: 600, fontFamily: "var(--display)", color: "var(--fg)", marginBottom: 4 }}>{item.label}</div>
+                <div style={{ fontSize: 12.5, color: "var(--muted)", fontFamily: "var(--body)", lineHeight: 1.5 }}>{item.desc}</div>
+              </div>
+            ))}
           </div>
         </div>
+        <div style={{ background: "var(--card)", borderRadius: 12, padding: 24, border: "1px solid var(--border)" }}>
+          <div style={{ fontSize: 11, fontFamily: "var(--mono)", color: "var(--accent)", letterSpacing: 2, marginBottom: 16, textTransform: "uppercase" }}>Conversation Example</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            <Bubble side="right" text="Do you have small star screwdrivers?" index={0} />
+            <Bubble side="left" text={"Here are the closest options:\n\n1. ALLEN STAR T15 — 86.50 Bs\n2. ALLEN STAR T20 — 114.94 Bs\n3. ALLEN STAR T25 — 94.80 Bs\n\nWould you like any of these?"} index={1} />
+            <Bubble side="right" text="Do you have Milwaukee brand?" index={2} />
+            <Bubble side="left" text="I don't have Milwaukee right now. I can offer TOTAL and similar brands. Want to see alternatives?" index={3} />
+            <Bubble side="right" text="I'll go with option 2" index={4} />
+            <Bubble side="left" text={"Order summary:\n\n• ALLEN STAR T20 SECURITY\n• Qty: 1 — Price: 114.94 Bs\n\nI need your name, phone, payment method, and delivery preference."} index={5} />
+            <Bubble side="right" text="Roberto Gomez, delivery please" index={6} />
+          </div>
+        </div>
+      </div>
       </div>
     )
   },
   {
     id: "learnings", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", flex: 1, width: "100%" }}>
-        <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>07 — What I Learned</div>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100dvh", width: "100%", textAlign: "center", position: "relative", overflow: "hidden", padding: isMobile ? "0 20px" : 0 }}>        <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 16 }}>07 — What I Learned</div>
         <h2 style={{ fontSize: isMobile ? 24 : 34, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 36px", lineHeight: 1.2 }}>Designing for AI means<br /><span style={{ fontWeight: 600 }}>designing for uncertainty</span></h2>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: isMobile ? 16 : 20 }}>
           {[
@@ -264,8 +257,7 @@ const slides = [
   },
   {
     id: "connection", render: ({ isMobile }) => (
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", flex: 1, width: "100%", textAlign: "center" }}>
-        <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 24 }}>08 — Why Deutsche Telekom</div>
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100dvh", width: "100%", textAlign: "center", position: "relative", overflow: "hidden", padding: isMobile ? "0 20px" : 0 }}>        <div style={{ fontSize: 12, letterSpacing: 3, color: "var(--accent)", fontFamily: "var(--mono)", textTransform: "uppercase", marginBottom: 24 }}>08 — Why Deutsche Telekom</div>
         <h2 style={{ fontSize: isMobile ? 28 : 38, fontWeight: 300, fontFamily: "var(--display)", color: "var(--fg)", margin: "0 0 40px", lineHeight: 1.3 }}>Ready to design<br /><span style={{ fontWeight: 600 }}>AI experiences at scale</span></h2>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: isMobile ? 16 : 20, width: "100%", marginBottom: 40 }}>
           {[
